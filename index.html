@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBL HACKER - Premium Lookup</title>
+    <title>SBL SIMDATABASE- Premium Lookup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -405,7 +405,7 @@
     
     <div class="container">
         <header class="floating">
-            <h1 class="glow">SBL HACKER</h1>
+            <h1 class="glow">SBL SIMDATABASE</h1>
             <p class="subtitle">Advanced Number Lookup System</p>
             <p class="tagline">Premium • Secure • Reliable • Powerful</p>
         </header>
@@ -452,7 +452,7 @@
         </div>
         
         <footer>
-            <p>© 2023 SBL HACKER | ALL RIGHTS RESERVED | FOR AUTHORIZED USE ONLY</p>
+            <p>© 2025 SBL HACKER | ALL RIGHTS RESERVED | FOR AUTHORIZED USE ONLY</p>
         </footer>
     </div>
 
@@ -488,16 +488,10 @@
                     return;
                 }
                 
-                // Validate Pakistan number format (optional)
-                if (!/^03\d{9}$/.test(number)) {
-                    showError('ERROR: PLEASE ENTER A VALID PAKISTANI NUMBER (03XXXXXXXXX)');
-                    return;
-                }
-                
                 // Show loading indicator
                 loading.style.display = 'block';
                 
-                // Make API request to our backend
+                // Make API request to our backend - FIXED ENDPOINT
                 fetch('/api/search', {
                     method: 'POST',
                     headers: {
@@ -507,7 +501,7 @@
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('NETWORK RESPONSE ERROR');
+                        throw new Error(`Server responded with status: ${response.status}`);
                     }
                     return response.json();
                 })
@@ -538,7 +532,7 @@
                     
                     // Show error message
                     showError('REQUEST FAILED: ' + err.message);
-                    console.error('Error:', err);
+                    console.error('Error details:', err);
                 });
             });
             
