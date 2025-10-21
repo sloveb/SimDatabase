@@ -11,14 +11,29 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (req.method !== 'POST") {
+  if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Only POST allowed' });
   }
 
   try {
-    // Parse body manually (Vercel fix)
-    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    let body;
     
+    if (req.body) {
+      body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    } else {
+      body = await new Promise((resolve) => {
+        let data = '';
+        req.on('data', chunk => data += chunk);
+        req.on('end', () => {
+          try {
+            resolve(JSON.parse(data || '{}'));
+          } catch {
+            resolve({});
+          }
+        });
+      });
+    }
+
     const { number } = body;
 
     if (!number) {
@@ -31,14 +46,21 @@ export default async function handler(req, res) {
     );
 
     if (!response.ok) {
-      throw new Error(`External API responded with status: ${response.status}`);
+      throw new Error(`External API error: ${response.status}`);
     }
 
     const data = await response.text();
 
-    return res.status(200).json({ success: true, result: data });
+    return res.status(200).json({ 
+      success: true, 
+      result: data 
+    });
+    
   } catch (error) {
     console.error('Server error:', error);
-    return res.status(500).json({ error: 'Server error', details: error.message });
+    return res.status(500).json({ 
+      error: 'Server error', 
+      details: error.message 
+    });
   }
 }
