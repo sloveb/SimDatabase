@@ -452,7 +452,7 @@
         </div>
         
         <footer>
-            <p>© 2025 SBL HACKER | ALL RIGHTS RESERVED | FOR AUTHORIZED USE ONLY</p>
+            <p>© 2023 SBL HACKER | ALL RIGHTS RESERVED | FOR AUTHORIZED USE ONLY</p>
         </footer>
     </div>
 
@@ -467,7 +467,7 @@
             const errorText = document.getElementById('errorText');
             const successMessage = document.getElementById('successMessage');
             
-            // Search button click handler
+            // Search button click handler - DIRECT EXTERNAL API CALL
             searchBtn.addEventListener('click', function() {
                 const number = numberInput.value.trim();
                 
@@ -482,7 +482,7 @@
                     return;
                 }
                 
-                // Validate if it's a valid number (basic check)
+                // Validate if it's a valid number
                 if (!/^\d+$/.test(number)) {
                     showError('ERROR: PLEASE ENTER A VALID NUMERIC PHONE NUMBER');
                     return;
@@ -491,36 +491,24 @@
                 // Show loading indicator
                 loading.style.display = 'block';
                 
-                // Make API request to our backend
-                fetch('/api/search', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ number: number })
-                })
+                // DIRECT EXTERNAL API CALL (No backend needed)
+                fetch(`https://fam-official.serv00.net/api/database.php?number=${number}`)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`Server responded with status: ${response.status}`);
+                        throw new Error('External API error: ' + response.status);
                     }
-                    return response.json();
+                    return response.text();
                 })
                 .then(data => {
                     // Hide loading indicator
                     loading.style.display = 'none';
                     
-                    // Check for errors in response
-                    if (data.error) {
-                        showError('API ERROR: ' + data.error);
-                        return;
-                    }
-                    
                     // Show success message
                     successMessage.style.display = 'block';
                     
                     // Display results
-                    if (data.success && data.result) {
-                        resultBox.textContent = data.result;
+                    if (data && data.trim() !== '') {
+                        resultBox.textContent = data;
                     } else {
                         resultBox.textContent = 'NO INFORMATION FOUND FOR THIS NUMBER';
                     }
@@ -531,8 +519,8 @@
                     loading.style.display = 'none';
                     
                     // Show error message
-                    showError('REQUEST FAILED: ' + err.message);
-                    console.error('Error details:', err);
+                    showError('API REQUEST FAILED: ' + err.message);
+                    console.error('Error:', err);
                 });
             });
             
