@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBL HACKER - Premium Lookup</title>
+    <title>SBL SIMDATABASE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -22,255 +22,201 @@
             justify-content: center;
             padding: 20px;
             color: #ffffff;
-            overflow-x: hidden;
         }
         
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 500px;
             margin: 0 auto;
         }
         
-        header {
+        .header {
             text-align: center;
-            margin-bottom: 50px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 25px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(135, 206, 250, 0.3);
+            margin-bottom: 40px;
+            padding: 25px 20px;
         }
         
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(135, 206, 250, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.8s;
-        }
-        
-        header:hover::before {
-            transform: translateX(100%);
-        }
-        
-        h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(to right, #87CEEB, #00BFFF, #1E90FF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            text-shadow: 0 5px 15px rgba(135, 206, 250, 0.3);
-            text-transform: uppercase;
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #4fc3f7;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(79, 195, 247, 0.5);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
         }
         
         .subtitle {
-            font-size: 1.5rem;
-            color: #87CEEB;
-            margin-bottom: 10px;
-            font-weight: 400;
+            font-size: 1.1rem;
+            color: #4fc3f7;
+            margin-bottom: 6px;
+            font-weight: 500;
         }
         
         .tagline {
-            font-size: 1.2rem;
-            color: #87CEFA;
+            font-size: 0.95rem;
+            color: #81d4fa;
             font-style: italic;
-            font-weight: 300;
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 25px;
-            padding: 50px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             width: 100%;
-            margin-bottom: 40px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(135, 206, 250, 0.2);
+            margin-bottom: 30px;
+            border: 1px solid rgba(100, 150, 255, 0.2);
         }
         
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(135, 206, 250, 0.2);
-            border-color: rgba(135, 206, 250, 0.4);
-        }
-        
-        .input-group {
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 20px;
+        .section-title {
             font-size: 1.4rem;
-            color: #87CEEB;
+            color: #4fc3f7;
+            margin-bottom: 25px;
+            text-align: center;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        label i {
-            margin-right: 15px;
-            color: #87CEEB;
-            font-size: 1.6rem;
         }
         
         .input-container {
-            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            color: #bbdefb;
+            font-weight: 500;
+            text-align: center;
         }
         
         input {
             width: 100%;
-            padding: 22px 25px;
+            padding: 18px 20px;
             border: none;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
             color: #ffffff;
-            font-size: 1.3rem;
-            border: 2px solid rgba(135, 206, 250, 0.3);
+            font-size: 1.2rem;
+            border: 2px solid rgba(100, 150, 255, 0.3);
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
             text-align: center;
+            font-weight: 500;
         }
         
         input:focus {
             outline: none;
-            border-color: #87CEEB;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 25px rgba(135, 206, 250, 0.3);
+            border-color: #4fc3f7;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
         }
         
         input::placeholder {
-            color: #87CEEB;
+            color: #90caf9;
             text-align: center;
+            font-weight: 400;
         }
         
         button {
             width: 100%;
-            padding: 22px;
-            background: linear-gradient(135deg, #87CEEB, #00BFFF);
+            padding: 18px;
+            background: linear-gradient(135deg, #0288d1, #03a9f4);
             color: #fff;
             border: none;
-            border-radius: 15px;
-            font-size: 1.4rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 25px rgba(135, 206, 250, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            text-transform: uppercase;
-        }
-        
-        button i {
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-        
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #00BFFF, #87CEEB);
-            z-index: -1;
-            transition: opacity 0.3s;
-            opacity: 0;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(2, 136, 209, 0.4);
+            margin-top: 10px;
         }
         
         button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(135, 206, 250, 0.6);
-        }
-        
-        button:hover::before {
-            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(2, 136, 209, 0.6);
         }
         
         button:active {
-            transform: translateY(2px);
+            transform: translateY(1px);
+        }
+        
+        .hint {
+            text-align: center;
+            color: #81d4fa;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            font-style: italic;
         }
         
         .result-container {
-            margin-top: 40px;
+            margin-top: 30px;
             display: none;
-            animation: fadeInUp 0.5s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .result-title {
-            font-size: 1.7rem;
-            margin-bottom: 25px;
-            color: #87CEEB;
-            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #4fc3f7;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .result-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #4fc3f7;
+            color: #e3f2fd;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        .result-title i {
-            margin-right: 15px;
-            color: #87CEEB;
+        .success-message {
+            text-align: center;
+            margin-top: 20px;
+            color: #69f0ae;
+            font-weight: 600;
+            display: none;
+            background: rgba(105, 240, 174, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #69f0ae;
         }
         
-        .result-box {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            padding: 30px;
-            border-left: 5px solid #87CEEB;
-            word-break: break-all;
-            max-height: 400px;
-            overflow-y: auto;
-            line-height: 1.7;
-            color: #E6F7FF;
-            font-size: 1.1rem;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            font-family: 'Courier New', monospace;
+        .error-message {
             text-align: center;
+            margin-top: 20px;
+            color: #ff6b6b;
+            font-weight: 600;
+            display: none;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
         }
         
         .loading {
             display: none;
             text-align: center;
-            margin: 40px 0;
+            margin: 25px 0;
         }
         
         .spinner {
-            border: 6px solid rgba(135, 206, 250, 0.2);
+            border: 5px solid rgba(79, 195, 247, 0.2);
             border-radius: 50%;
-            border-top: 6px solid #87CEEB;
-            width: 80px;
-            height: 80px;
+            border-top: 5px solid #4fc3f7;
+            width: 60px;
+            height: 60px;
             animation: spin 1.2s linear infinite;
-            margin: 0 auto 25px;
-            box-shadow: 0 0 25px rgba(135, 206, 250, 0.3);
+            margin: 0 auto 15px;
         }
         
         @keyframes spin {
@@ -279,180 +225,152 @@
         }
         
         .loading-text {
-            color: #87CEEB;
-            font-size: 1.3rem;
+            color: #4fc3f7;
+            font-size: 1.1rem;
             font-weight: 600;
+        }
+        
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(100, 150, 255, 0.2);
+        }
+        
+        .disclaimer-title {
+            font-size: 1.2rem;
+            color: #4fc3f7;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .disclaimer-text {
+            color: #bbdefb;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: justify;
         }
         
         footer {
             margin-top: 40px;
             text-align: center;
-            color: #87CEFA;
-            font-size: 1.1rem;
+            color: #81d4fa;
+            font-size: 0.9rem;
             width: 100%;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(135, 206, 250, 0.2);
-        }
-        
-        .error {
-            color: #ff6b6b;
-            margin-top: 25px;
-            display: none;
-            background: rgba(255, 107, 107, 0.1);
             padding: 20px;
-            border-radius: 15px;
-            border-left: 5px solid #ff6b6b;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
         }
         
-        .error i {
-            margin-right: 15px;
-            font-size: 1.5rem;
+        .record {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(79, 195, 247, 0.3);
+            text-align: left;
         }
         
-        .success-message {
+        .record:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .record-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #4fc3f7;
+            margin-bottom: 12px;
             text-align: center;
-            margin-top: 25px;
-            color: #6bff8d;
-            font-weight: 600;
-            display: none;
-            background: rgba(107, 255, 141, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 5px solid #6bff8d;
-            backdrop-filter: blur(5px);
         }
         
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
+        .record-field {
+            margin-bottom: 8px;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            color: #4fc3f7;
+            display: inline-block;
+            width: 80px;
+        }
+        
+        .field-value {
+            color: #e3f2fd;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
             }
             
             .card {
-                padding: 30px;
+                padding: 25px 20px;
+            }
+            
+            .logo {
+                font-size: 1.9rem;
             }
             
             input, button {
-                padding: 18px;
-                font-size: 1.2rem;
+                padding: 16px;
+                font-size: 1.1rem;
             }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(135, 206, 250, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(135, 206, 250, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(135, 206, 250, 0); }
-        }
-        
-        .floating {
-            animation: floating 4s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .glow {
-            text-shadow: 0 0 10px rgba(135, 206, 250, 0.5), 0 0 20px rgba(135, 206, 250, 0.3);
-        }
-        
-        .scan-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #87CEEB, transparent);
-            animation: scan 4s linear infinite;
-            pointer-events: none;
-            z-index: 999;
-            box-shadow: 0 0 15px #87CEEB;
-        }
-        
-        @keyframes scan {
-            0% {
-                top: 0%;
-            }
-            100% {
-                top: 100%;
-            }
-        }
-        
-        .input-hint {
-            text-align: center;
-            color: #87CEFA;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="scan-line"></div>
-    
     <div class="container">
-        <header class="floating">
-            <h1 class="glow">SBL HACKER</h1>
-            <p class="subtitle">Advanced Number Lookup System</p>
-            <p class="tagline">Premium • Secure • Reliable • Powerful</p>
-        </header>
+        <div class="header">
+            <div class="logo">SBL SIMDATABASE</div>
+            <div class="subtitle">Professional Data Services & Verification</div>
+            <div class="tagline">Secure & Reliable</div>
+        </div>
         
         <div class="card">
-            <div class="input-group">
-                <label for="numberInput">
-                    <i class="fas fa-phone-alt"></i>
-                    ENTER PHONE NUMBER
-                </label>
-                <div class="input-container">
-                    <input type="text" id="numberInput" placeholder="03XXXXXXXXX">
-                </div>
-                <div class="input-hint">Enter number in format: 03XXXXXXXXX</div>
+            <div class="section-title">MOBILE NUMBER</div>
+            
+            <div class="input-container">
+                <div class="input-label">Enter Phone Number</div>
+                <input type="text" id="numberInput" placeholder="03xxxxxxxxx">
             </div>
             
-            <button id="searchBtn" class="pulse">
-                <i class="fas fa-search"></i>
-                SEARCH DATABASE
+            <button id="searchBtn">
+                <i class="fas fa-search"></i> Search Database
             </button>
+            
+            <div class="hint">Enter number like this! 03012345678</div>
             
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p class="loading-text">SCANNING DATABASE...</p>
-            </div>
-            
-            <div class="error" id="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <span id="errorText"></span>
+                <p class="loading-text">Searching Database...</p>
             </div>
             
             <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle"></i>
-                SEARCH COMPLETED SUCCESSFULLY!
+                <i class="fas fa-check-circle"></i> SEARCH COMPLETED SUCCESSFULLY!
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i> <span id="errorText"></span>
             </div>
             
             <div class="result-container" id="resultContainer">
-                <h2 class="result-title">
-                    <i class="fas fa-file-alt"></i>
-                    SEARCH RESULTS
-                </h2>
+                <div class="result-title">SEARCH RESULTS</div>
                 <div class="result-box" id="resultBox"></div>
             </div>
         </div>
         
+        <div class="disclaimer">
+            <div class="disclaimer-title">Important Disclaimer</div>
+            <div class="disclaimer-text">
+                All services and website are for educational, security, and verification purposes only. 
+                We do not support or promote illegal access or misuse of data. Our services comply with 
+                applicable data protection regulations and are intended for legitimate verification needs.
+            </div>
+        </div>
+        
         <footer>
-            <p>© 2023 SBL HACKER | ALL RIGHTS RESERVED | FOR AUTHORIZED USE ONLY</p>
+            <p>Copyright © 2025 SBL Tools. All Rights Reserved</p>
+            <p>Professional Data Services</p>
         </footer>
     </div>
 
@@ -463,39 +381,68 @@
             const resultContainer = document.getElementById('resultContainer');
             const resultBox = document.getElementById('resultBox');
             const loading = document.getElementById('loading');
-            const error = document.getElementById('error');
+            const errorMessage = document.getElementById('errorMessage');
             const errorText = document.getElementById('errorText');
             const successMessage = document.getElementById('successMessage');
             
-            // Search button click handler - DIRECT EXTERNAL API CALL
+            // CORS Proxy URLs
+            const corsProxies = [
+                'https://api.allorigins.win/raw?url=',
+                'https://corsproxy.io/?',
+                'https://api.codetabs.com/v1/proxy?quest='
+            ];
+            
+            let currentProxyIndex = 0;
+            
+            // Search button click handler
             searchBtn.addEventListener('click', function() {
                 const number = numberInput.value.trim();
                 
                 // Reset previous results and errors
                 resultContainer.style.display = 'none';
-                error.style.display = 'none';
+                errorMessage.style.display = 'none';
                 successMessage.style.display = 'none';
                 
                 // Validate input
                 if (!number) {
-                    showError('ERROR: PLEASE ENTER A PHONE NUMBER');
+                    showError('Please enter a phone number');
                     return;
                 }
                 
-                // Validate if it's a valid number
-                if (!/^\d+$/.test(number)) {
-                    showError('ERROR: PLEASE ENTER A VALID NUMERIC PHONE NUMBER');
+                // Validate if it's a valid Pakistani number
+                if (!/^03\d{9}$/.test(number)) {
+                    showError('Please enter a valid Pakistani number (03XXXXXXXXX)');
                     return;
                 }
                 
                 // Show loading indicator
                 loading.style.display = 'block';
                 
-                // DIRECT EXTERNAL API CALL (No backend needed)
-                fetch(`https://fam-official.serv00.net/api/database.php?number=${number}`)
+                // Try with CORS proxy
+                tryWithProxy(number, currentProxyIndex);
+            });
+            
+            function tryWithProxy(number, proxyIndex) {
+                if (proxyIndex >= corsProxies.length) {
+                    // All proxies failed
+                    loading.style.display = 'none';
+                    showError('Connection failed. Please try again later.');
+                    return;
+                }
+                
+                const proxyUrl = corsProxies[proxyIndex];
+                const targetUrl = `https://fam-official.serv00.net/api/database.php?number=${number}`;
+                const fullUrl = proxyUrl + encodeURIComponent(targetUrl);
+                
+                fetch(fullUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                    }
+                })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('External API error: ' + response.status);
+                        throw new Error(`HTTP ${response.status}`);
                     }
                     return response.text();
                 })
@@ -503,31 +450,215 @@
                     // Hide loading indicator
                     loading.style.display = 'none';
                     
-                    // Show success message
-                    successMessage.style.display = 'block';
-                    
-                    // Display results
-                    if (data && data.trim() !== '') {
-                        resultBox.textContent = data;
-                    } else {
-                        resultBox.textContent = 'NO INFORMATION FOUND FOR THIS NUMBER';
-                    }
-                    resultContainer.style.display = 'block';
+                    // Process the response
+                    processResponseData(data, number);
                 })
                 .catch(err => {
-                    // Hide loading indicator
-                    loading.style.display = 'none';
+                    console.log(`Proxy ${proxyIndex + 1} failed:`, err.message);
                     
-                    // Show error message
-                    showError('API REQUEST FAILED: ' + err.message);
-                    console.error('Error:', err);
+                    // Try next proxy
+                    tryWithProxy(number, proxyIndex + 1);
                 });
-            });
+            }
+            
+            function processResponseData(data, searchNumber) {
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Display results
+                if (data && data.trim() !== '' && !data.toLowerCase().includes('error')) {
+                    try {
+                        // Try to parse as JSON
+                        const parsedData = JSON.parse(data);
+                        
+                        if (parsedData.success && parsedData.data && parsedData.data.length > 0) {
+                            // Format the data as records
+                            const formattedData = formatJSONData(parsedData.data, searchNumber);
+                            resultBox.innerHTML = formattedData;
+                        } else {
+                            resultBox.innerHTML = 'Data not found';
+                        }
+                    } catch (e) {
+                        // If JSON parsing fails, check if it's text data
+                        if (data.includes('Name:') || data.includes('Mobile:')) {
+                            const formattedData = formatTextData(data, searchNumber);
+                            resultBox.innerHTML = formattedData;
+                        } else {
+                            resultBox.innerHTML = 'Data not found';
+                        }
+                    }
+                } else {
+                    resultBox.innerHTML = 'Data not found';
+                }
+                
+                resultContainer.style.display = 'block';
+            }
+            
+            // Format JSON data
+            function formatJSONData(data, searchNumber) {
+                let html = '';
+                
+                if (Array.isArray(data)) {
+                    data.forEach((record, index) => {
+                        html += `
+                            <div class="record">
+                                <div class="record-title">Record ${index + 1}</div>
+                                <div class="record-field">
+                                    <span class="field-label">Name:</span>
+                                    <span class="field-value">${record.name || 'N/A'}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">Mobile:</span>
+                                    <span class="field-value">${record.mobile || record.number || searchNumber}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">CNIC:</span>
+                                    <span class="field-value">${record.cnic || 'N/A'}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">Address:</span>
+                                    <span class="field-value">${record.address || 'N/A'}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    html = 'Data not found';
+                }
+                
+                return html;
+            }
+            
+            // Format text data
+            function formatTextData(data, searchNumber) {
+                // If data is in markdown format like in the screenshot
+                if (data.includes('# Record') && data.includes('**Name:**')) {
+                    return convertMarkdownToHTML(data);
+                }
+                
+                // Otherwise try to extract information
+                const lines = data.split('\n');
+                let records = [];
+                let currentRecord = {};
+                
+                for (const line of lines) {
+                    const trimmedLine = line.trim();
+                    
+                    if (trimmedLine.startsWith('# Record')) {
+                        if (Object.keys(currentRecord).length > 0) {
+                            records.push(currentRecord);
+                            currentRecord = {};
+                        }
+                    } else if (trimmedLine.startsWith('**Name:**')) {
+                        currentRecord.name = trimmedLine.replace('**Name:**', '').trim();
+                    } else if (trimmedLine.startsWith('**Mobile:**')) {
+                        currentRecord.mobile = trimmedLine.replace('**Mobile:**', '').trim();
+                    } else if (trimmedLine.startsWith('**CNIC:**')) {
+                        currentRecord.cnic = trimmedLine.replace('**CNIC:**', '').trim();
+                    } else if (trimmedLine.startsWith('**Address:**')) {
+                        currentRecord.address = trimmedLine.replace('**Address:**', '').trim();
+                    } else if (trimmedLine !== '' && currentRecord.address && !trimmedLine.startsWith('**')) {
+                        currentRecord.address += ' ' + trimmedLine;
+                    }
+                }
+                
+                // Add the last record
+                if (Object.keys(currentRecord).length > 0) {
+                    records.push(currentRecord);
+                }
+                
+                // Format the records
+                if (records.length > 0) {
+                    let html = '';
+                    records.forEach((record, index) => {
+                        html += `
+                            <div class="record">
+                                <div class="record-title">Record ${index + 1}</div>
+                                <div class="record-field">
+                                    <span class="field-label">Name:</span>
+                                    <span class="field-value">${record.name || 'N/A'}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">Mobile:</span>
+                                    <span class="field-value">${record.mobile || searchNumber}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">CNIC:</span>
+                                    <span class="field-value">${record.cnic || 'N/A'}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">Address:</span>
+                                    <span class="field-value">${record.address || 'N/A'}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    return html;
+                } else {
+                    return 'Data not found';
+                }
+            }
+            
+            // Convert markdown to HTML
+            function convertMarkdownToHTML(data) {
+                let html = '';
+                const records = data.split('---');
+                
+                records.forEach((record, index) => {
+                    if (record.trim() === '') return;
+                    
+                    const lines = record.split('\n');
+                    let recordData = {};
+                    
+                    lines.forEach(line => {
+                        const trimmedLine = line.trim();
+                        if (trimmedLine.startsWith('# Record')) {
+                            // Record title
+                        } else if (trimmedLine.startsWith('**Name:**')) {
+                            recordData.name = trimmedLine.replace('**Name:**', '').trim();
+                        } else if (trimmedLine.startsWith('**Mobile:**')) {
+                            recordData.mobile = trimmedLine.replace('**Mobile:**', '').trim();
+                        } else if (trimmedLine.startsWith('**CNIC:**')) {
+                            recordData.cnic = trimmedLine.replace('**CNIC:**', '').trim();
+                        } else if (trimmedLine.startsWith('**Address:**')) {
+                            recordData.address = trimmedLine.replace('**Address:**', '').trim();
+                        } else if (trimmedLine !== '' && recordData.address && !trimmedLine.startsWith('**')) {
+                            recordData.address += ' ' + trimmedLine;
+                        }
+                    });
+                    
+                    if (Object.keys(recordData).length > 0) {
+                        html += `
+                            <div class="record">
+                                <div class="record-title">Record ${index + 1}</div>
+                                <div class="record-field">
+                                    <span class="field-label">Name:</span>
+                                    <span class="field-value">${recordData.name}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">Mobile:</span>
+                                    <span class="field-value">${recordData.mobile}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">CNIC:</span>
+                                    <span class="field-value">${recordData.cnic}</span>
+                                </div>
+                                <div class="record-field">
+                                    <span class="field-label">Address:</span>
+                                    <span class="field-value">${recordData.address}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                return html || 'Data not found';
+            }
             
             // Function to display error messages
             function showError(message) {
                 errorText.textContent = message;
-                error.style.display = 'flex';
+                errorMessage.style.display = 'block';
             }
             
             // Allow Enter key to trigger search
